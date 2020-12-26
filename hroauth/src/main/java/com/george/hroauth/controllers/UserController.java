@@ -21,7 +21,7 @@ public class UserController {
 	@GetMapping(value = "search")
 	public ResponseEntity<User> findByEmail(@RequestParam String email) {
 		try {
-			User user = this.service.findByEmail(email);
+			User user = (User) this.service.loadUserByUsername(email);
 			
 			return ResponseEntity.ok(user);
 		} catch (IllegalArgumentException e) {
